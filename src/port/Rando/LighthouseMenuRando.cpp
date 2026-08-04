@@ -83,8 +83,10 @@ void LighthouseMenu::AddMenuRando() {
             }
         }
         ImGui::SameLine();
-        if (UIWidgets::Button(ICON_FA_REFRESH,
-                              UIWidgets::ButtonOptions().Color(WIDGET_COLOR).Size(ImVec2(32.0f, 32.0f)))) {
+        if (UIWidgets::Button(ICON_FA_REFRESH, UIWidgets::ButtonOptions()
+                                                   .Color(WIDGET_COLOR)
+                                                   .Size(ImVec2(32.0f, 32.0f))
+                                                   .Tooltip("Refreshes the list of Spoiler Logs."))) {
             Rando::Spoiler::RefreshSpoilerLogs();
         }
         ImGui::EndDisabled();
