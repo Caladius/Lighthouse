@@ -1,7 +1,7 @@
 #include "Spoiler.h"
 #include <libultraship/bridge/consolevariablebridge.h>
 #include "port/Rando/Logic/Logic.h"
-#include "port/ui/Notification.h"
+#include "port/UI/Notification.h"
 
 extern void RandoSaveCheck_to_json(nlohmann::json& j, const RandoSaveCheck& randoSaveCheck);
 extern RandoSaveCheck RandoSaveCheck_from_json(const nlohmann::json& j, RandoSaveCheck& randoSaveCheck);
