@@ -59,7 +59,10 @@ void GenerateFromSpoiler(nlohmann::json spoiler) {
 
     if (!spoiler.contains("type") || spoiler["type"] != "LIGHTHOUSE_RANDO_SPOILER") {
         Notification::Emit({ .message = "Error: Invalid Spoiler Log.", .messageColor = ImVec4(0.85f, 0.3f, 0, 1) });
+        return;
     }
+
+    gameFile_saveData[selectedFileNum].shipSaveData.randoSaveData.seedId = spoiler["seed"];
 
     if (spoiler.contains("checks") && !spoiler["checks"].empty()) {
         for (auto& data : spoiler["checks"].items()) {
