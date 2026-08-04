@@ -13,7 +13,7 @@ nlohmann::ordered_json GenerateFromPoolGeneration() {
     nlohmann::ordered_json orderedSpoiler = nlohmann::ordered_json::object();
 
     orderedSpoiler["type"] = "LIGHTHOUSE_RANDO_SPOILER";
-    orderedSpoiler["seed"] = 0; // TODO: Add once Manual Seed Input is finished.
+    orderedSpoiler["seed"] = randoFinalSeed; // TODO: Add once Manual Seed Input is finished.
 
     orderedSpoiler["options"] = nlohmann::json::object();
     for (auto& optionEntry : RANDO_SAVE_OPTIONS) {

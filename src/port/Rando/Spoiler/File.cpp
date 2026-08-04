@@ -36,6 +36,7 @@ void SaveToFile(const std::string& fileName, nlohmann::ordered_json spoiler) {
     }
 
     fileStream << spoiler.dump(4);
+    RefreshSpoilerLogs();
 }
 
 nlohmann::json LoadFromFile(const std::string& fileName) {
