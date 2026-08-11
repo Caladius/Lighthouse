@@ -1,5 +1,5 @@
-#ifndef RANDO_WORLD_TRACKER_H
-#define RANDO_WORLD_TRACKER_H
+#ifndef WORLD_TRACKER_H
+#define WORLD_TRACKER_H
 
 #include "port/Rando/Rando.h"
 #include <ship/window/gui/GuiWindow.h>
@@ -41,4 +41,4 @@ public:
 
 } // namespace WorldTracker
 
-#endif // RANDO_WORLD_TRACKER_H
+#endif // WORLD_TRACKER_H
