@@ -443,7 +443,8 @@ typedef struct {
 std::vector<PaletteTextureLoad> paletteTextureLoad = {
     { "Music Note", "assets/sprite/ASSET_81B_LIVE_MUSIC_NOTE_1_0", "assets/sprite/ASSET_81B_LIVE_MUSIC_NOTE_1_TLUT" },
     { "Jiggy", "assets/sprite/ASSET_80D_LIVE_JIGGY_1_0", "assets/sprite/ASSET_80D_LIVE_JIGGY_1_TLUT" },
-    { "Empty Honeycomb", "assets/sprite/ASSET_81D_LIVE_EXTRA_HEALTH_MAX_1_0", "assets/sprite/ASSET_81D_LIVE_EXTRA_HEALTH_MAX_1_TLUT" },
+    { "Empty Honeycomb", "assets/sprite/ASSET_81D_LIVE_EXTRA_HEALTH_MAX_1_0",
+      "assets/sprite/ASSET_81D_LIVE_EXTRA_HEALTH_MAX_1_TLUT" },
     { "Mumbo Token", "assets/sprite/ASSET_41A_MUMBO_TOKEN_1_0", "assets/sprite/ASSET_41A_MUMBO_TOKEN_1_TLUT" },
     { "Blue Jinjo", "assets/sprite/ASSET_804_JINJO_BLUE_0_0", "assets/sprite/ASSET_804_JINJO_BLUE_0_TLUT" },
     { "Green Jinjo", "assets/sprite/ASSET_803_JINJO_GREEN_0_0", "assets/sprite/ASSET_803_JINJO_GREEN_0_TLUT" },

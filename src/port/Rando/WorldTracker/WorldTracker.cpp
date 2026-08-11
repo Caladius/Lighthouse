@@ -28,13 +28,11 @@ bool worldTrackerPopoutState = false;
 ImVec4 worldTrackerBG = ImVec4{ 0, 0, 0, 0.5f };
 static ImVec2 imageSize = ImVec2(32.0f, 32.0f);
 
-std::vector<const char*> jinjoTextureNameList = {
-    "Blue Jinjo", "Green Jinjo", "Orange Jinjo", "Pink Jinjo", "Yellow Jinjo"
-};
+std::vector<const char*> jinjoTextureNameList = { "Blue Jinjo", "Green Jinjo", "Orange Jinjo", "Pink Jinjo",
+                                                  "Yellow Jinjo" };
 
-std::vector<actor_e> orderedJinjoActorList = {
-    ACTOR_60_JINJO_BLUE, ACTOR_62_JINJO_GREEN, ACTOR_5F_JINJO_ORANGE, ACTOR_61_JINJO_PINK, ACTOR_5E_JINJO_YELLOW
-};
+std::vector<actor_e> orderedJinjoActorList = { ACTOR_60_JINJO_BLUE, ACTOR_62_JINJO_GREEN, ACTOR_5F_JINJO_ORANGE,
+                                               ACTOR_61_JINJO_PINK, ACTOR_5E_JINJO_YELLOW };
 
 namespace LighthouseGui {
 extern std::shared_ptr<Rando::WorldTracker::WorldTrackerWindow> mRandoWorldTrackerWindow;
@@ -62,9 +60,10 @@ void WorldTracker_DrawTotals() {
     bool isEmbedded = CVAR_SHOW_SEPARATE_TOTAL_COLLECTED;
 
     if (isEmbedded) {
-        ImGui::Begin("SplitWorldTrackerTotals", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoNav | ImGuiWindowFlags_NoFocusOnAppearing |
-            ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoTitleBar |
-            ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoScrollbar);
+        ImGui::Begin("SplitWorldTrackerTotals", nullptr,
+                     ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoNav | ImGuiWindowFlags_NoFocusOnAppearing |
+                         ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoTitleBar |
+                         ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoScrollbar);
     }
     if (ImGui::BeginTable("World Tracker Totals", 4, ImGuiTableFlags_SizingFixedFit)) {
         ImGui::TableNextColumn();
@@ -112,7 +111,8 @@ void WorldTracker_DrawJinjos(level_e levelId) {
     for (int i = 0; i < 5; i++) {
         bool hasJinjo = Rando::WorldTracker::worldTrackerObject[levelId].hasJinjo[i];
         ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
-        ImGui::ImageButton(std::to_string(i).c_str(), GetWorldTrackerTexture(jinjoTextureNameList[i]), imageSize, ImVec2(0, 0), ImVec2(1, 1), ImVec4(0, 0, 0, 0), ImVec4(1, 1, 1, hasJinjo ? 1 : 0.4f));
+        ImGui::ImageButton(std::to_string(i).c_str(), GetWorldTrackerTexture(jinjoTextureNameList[i]), imageSize,
+                           ImVec2(0, 0), ImVec2(1, 1), ImVec4(0, 0, 0, 0), ImVec4(1, 1, 1, hasJinjo ? 1 : 0.4f));
         ImGui::PopItemFlag();
         if (i != 4) {
             ImGui::SameLine();
@@ -122,7 +122,8 @@ void WorldTracker_DrawJinjos(level_e levelId) {
 
 void WorldTracker_DrawWorldObject(level_e levelId) {
     ImGui::PushID(levelId);
-    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(ImGui::GetStyle().CellPadding.x, ImGui::GetStyle().CellPadding.y + 2.0f));
+    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding,
+                        ImVec2(ImGui::GetStyle().CellPadding.x, ImGui::GetStyle().CellPadding.y + 2.0f));
     std::string levelName = worldNameList[levelId - 1].c_str();
     int32_t maxEHoneycombs = levelId == LEVEL_B_SPIRAL_MOUNTAIN ? 6 : 2;
 
@@ -153,7 +154,8 @@ void WorldTracker_DrawWorldObject(level_e levelId) {
                 ImGui::Image(GetWorldTrackerTexture("Empty Honeycomb"), imageSize);
                 ImGui::SameLine();
                 TableCellCenteredSetCursorPosY(imageSize.y);
-                ImGui::Text("%i / %i", Rando::WorldTracker::worldTrackerObject[levelId].honeycombLevelTotal, maxEHoneycombs);
+                ImGui::Text("%i / %i", Rando::WorldTracker::worldTrackerObject[levelId].honeycombLevelTotal,
+                            maxEHoneycombs);
             }
 
             if (levelId != LEVEL_B_SPIRAL_MOUNTAIN) {
@@ -161,7 +163,8 @@ void WorldTracker_DrawWorldObject(level_e levelId) {
                 ImGui::Image(GetWorldTrackerTexture("Mumbo Token"), imageSize);
                 ImGui::SameLine();
                 TableCellCenteredSetCursorPosY(imageSize.y);
-                ImGui::Text("%i / %i", Rando::WorldTracker::worldTrackerObject[levelId].tokenLevelTotal, kWorlds[levelId - 1].mumboCount);
+                ImGui::Text("%i / %i", Rando::WorldTracker::worldTrackerObject[levelId].tokenLevelTotal,
+                            kWorlds[levelId - 1].mumboCount);
             }
 
             ImGui::EndTable();
@@ -189,13 +192,12 @@ void WorldTracker_DrawTracker() {
             if (CVAR_SHOW_CURRENT_LEVEL) {
                 level_e currentLevel = map_getLevel(gsworld_getMap());
                 if (currentLevel < LEVEL_1_MUMBOS_MOUNTAIN || currentLevel > LEVEL_B_SPIRAL_MOUNTAIN) {
-                    ImGui::TextColored(UIWidgets::ColorValues.at(UIWidgets::Colors::Orange), "No World Data for this level...");
-                }
-                else {
+                    ImGui::TextColored(UIWidgets::ColorValues.at(UIWidgets::Colors::Orange),
+                                       "No World Data for this level...");
+                } else {
                     WorldTracker_DrawWorldObject(currentLevel);
                 }
-            }
-            else {
+            } else {
                 for (int i = LEVEL_1_MUMBOS_MOUNTAIN; i <= LEVEL_B_SPIRAL_MOUNTAIN; i++) {
                     WorldTracker_DrawWorldObject((level_e)i);
                 }
@@ -256,7 +258,8 @@ void UpdateWorldTracker() {
         worldTrackerObject[i].tokenLevelTotal = collectedTokens;
 
         for (int j = 0; j < 5; j++) {
-            int32_t jinjoIndex = (GetJinjoActorMarkerId((actor_e)(int32_t)(ACTOR_5E_JINJO_YELLOW + j)) - MARKER_5A_JINJO_BLUE);
+            int32_t jinjoIndex =
+                (GetJinjoActorMarkerId((actor_e)(int32_t)(ACTOR_5E_JINJO_YELLOW + j)) - MARKER_5A_JINJO_BLUE);
             u8 jinjoBit = jinjoBitFromActor(ACTOR_5E_JINJO_YELLOW + j);
             worldTrackerObject[i].hasJinjo[jinjoIndex] = (collectedJinjos & jinjoBit) != 0 ? 1 : 0;
         }
@@ -277,7 +280,6 @@ void WorldTrackerWindow::Draw() {
     ImGui::PushStyleColor(ImGuiCol_WindowBg, worldTrackerBG);
     ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
     ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 4.0f);
-    
 
     ImGui::SetNextWindowSize(ImVec2(485.0f, 500.0f), ImGuiCond_FirstUseEver);
 
@@ -296,14 +298,13 @@ void SettingsWindow::DrawElement() {
     if (CVarGetInteger("gWindows.WorldTracker", 0)) {
         worldTrackerPopoutState = true;
         UIWidgets::WindowButton("Return World Tracker", "gWindows.WorldTracker",
-            LighthouseGui::mRandoWorldTrackerWindow,
-            { .size = UIWidgets::Sizes::Inline, .color = UIWidgets::Colors::Red });
-    }
-    else {
+                                LighthouseGui::mRandoWorldTrackerWindow,
+                                { .size = UIWidgets::Sizes::Inline, .color = UIWidgets::Colors::Red });
+    } else {
         worldTrackerPopoutState = false;
         UIWidgets::WindowButton("Popout World Tracker", "gWindows.WorldTracker",
-            LighthouseGui::mRandoWorldTrackerWindow,
-            { .size = UIWidgets::Sizes::Inline, .color = UIWidgets::Colors::Green });
+                                LighthouseGui::mRandoWorldTrackerWindow,
+                                { .size = UIWidgets::Sizes::Inline, .color = UIWidgets::Colors::Green });
     }
 
     if (ImGui::BeginTable("SettingsTable", 2)) {
@@ -317,8 +318,7 @@ void SettingsWindow::DrawElement() {
                 WorldTracker_DrawTracker();
                 ImGui::EndChild();
             }
-        }
-        else {
+        } else {
             ImGui::TextColored(UIWidgets::ColorValues.at(WIDGET_COLOR), "Tracker popped out");
         }
 
@@ -337,7 +337,6 @@ void SettingsWindow::DrawElement() {
 }
 
 void Init() {
-
 }
 
 } // namespace WorldTracker
