@@ -1,5 +1,5 @@
 #pragma once
-#include "port/Rando/ItemQueue.h"
+#include "port/Rando/ItemQueue/ItemQueue.h"
 #include "prop.h"
 
 typedef struct {
@@ -41,6 +41,7 @@ public:
     static Actor* Spawn(int32_t position[3], RandoCheckId randoCheckId);
     static f32 GetScale(RandoItemType itemType);
     static void FacePlayer(Actor* actor);
+    static Actor* GetActorByRC(RandoCheckId randoCheckId);
     static void QueueProp(int32_t position[3], RandoCheckId randoCheckId);
     static void ProcessPropQueue();
 };

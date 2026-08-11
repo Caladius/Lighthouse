@@ -4,16 +4,17 @@
 #include <unordered_map>
 #include <map>
 
-#include "port/UI/Notification.h"
-#include "port/UI/UIWidgets.hpp"
 #include <libultraship/bridge.h>
 #include "port/ShipInit.hpp"
-#include "port/Rando/Logic/Logic.h"
-#include "actor.h"
+#include "port/UI/Notification.h"
+#include "port/UI/UIWidgets.hpp"
 #include "port/Enhancements/Retention/Retention.h"
+#include "port/Rando/CheckTracker/CheckTracker.h"
 #include "port/Rando/WorldTracker/WorldTracker.h"
+#include "port/Rando/Logic/Logic.h"
 
 extern "C" {
+#include "actor.h"
 #include "functions.h"
 extern u8 sHoneycombScore[3];
 extern struct {
@@ -36,7 +37,7 @@ extern void spawnOrbit();
 constexpr u8 kAllJinjos = 0x1F; // all five color bits collected
 
 #define CVAR_NAME_SHOW_COLLISION_NOTIFICATIONS "gRandoSettings.RandoNotifications"
-#define CVAR_SHOW_COLLISION_NOTIFICATIONS CVarGetInteger(CVAR_NAME_SHOW_COLLISION_NOTIFICATIONS, 0)
+#define CVAR_SHOW_COLLISION_NOTIFICATIONS CVarGetInteger(CVAR_NAME_SHOW_COLLISION_NOTIFICATIONS, 1)
 
 #define JIGGY_ID_MULTIPLIER(levelId) (1 + (10 * (levelId - 1)))
 #define HONEYCOMB_ID_MULTIPLIER(levelId) (1 + (2 * (levelId - 1)))
@@ -335,12 +336,13 @@ void ItemQueue::Clear() {
 void ItemQueue::AddCheck(RandoCheckId randoCheckId) {
     RANDO_SAVE_CHECKS[randoCheckId].eligible = true;
     itemQueue.push(randoCheckId);
+    CheckTracker_AddToCheckCount((uint32_t)randoCheckId);
 }
 
 void RegisterItemQueue() {
     COND_HOOK(GameFrameUpdate, EVENT_PRIORITY_NORMAL, IS_RANDO, [](IEvent* event) { ItemQueue::Process(); });
 
-    COND_HOOK(OnSaveFileLoad, EVENT_PRIORITY_NORMAL, IS_RANDO, [](IEvent* event) { ItemQueue::Clear(); });
+    COND_HOOK(OnSetJiggyList, EVENT_PRIORITY_NORMAL, IS_RANDO, [](IEvent* event) { ItemQueue::Clear(); });
 }
 
 static RegisterShipInitFunc initFunc(RegisterItemQueue, { "IS_RANDO" });
