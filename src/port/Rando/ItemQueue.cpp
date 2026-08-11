@@ -11,6 +11,7 @@
 #include "port/Rando/Logic/Logic.h"
 #include "actor.h"
 #include "port/Enhancements/Retention/Retention.h"
+#include "port/Rando/WorldTracker/WorldTracker.h"
 
 extern "C" {
 #include "functions.h"
@@ -81,6 +82,7 @@ void ItemQueue::Process() {
         ItemQueue::GiveItem(randoSaveCheck.randoItemId);
         ItemQueue::SendNotification(randoSaveCheck.randoItemId);
         Rando::StaticData::ModifyRandoInfFlagState(randoCheckId);
+        Rando::WorldTracker::UpdateWorldTracker();
         // RANDO_SAVE_CHECKS[randoCheckId].received = true;
     }
 

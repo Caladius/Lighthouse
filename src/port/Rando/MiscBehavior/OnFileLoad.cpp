@@ -12,6 +12,7 @@
 #include "port/Rando/CheckTracker/CheckTracker.h"
 #include "port/Rando/Spoiler/Spoiler.h"
 #include "port/Rando/CheckTracker/CheckTracker.h"
+#include "port/Rando/WorldTracker/WorldTracker.h"
 
 extern "C" {
 enum map_e gsworld_getMap(void);
@@ -39,6 +40,7 @@ void Rando::MiscBehavior::OnFileLoad() {
         if (saveData->magic != 0) {
             if (saveData->shipSaveData.fileType == FILE_TYPE_SAVE_RANDO) {
                 Rando::Logic::GeneratePoolFromSaveData(saveData);
+                Rando::WorldTracker::UpdateWorldTracker();
             }
             return;
         }

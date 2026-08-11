@@ -21,6 +21,7 @@
 // #include "Enhancements/Trackers//TimeSplits/Timesplits.h"
 // #include "Enhancements/Trackers/TimeSplits/TimesplitsSettings.h"
 #include "port/Rando/CheckTracker/CheckTracker.h"
+#include "port/Rando/WorldTracker/WorldTracker.h"
 
 #include "Notification.h"
 #include "port/Controller/Mapper.h"
@@ -64,6 +65,8 @@ std::shared_ptr<LighthouseMenu> mLighthouseMenu;
 std::shared_ptr<Notification::Window> mNotificationWindow;
 std::shared_ptr<Rando::CheckTracker::CheckTrackerWindow> mRandoCheckTrackerWindow;
 std::shared_ptr<Rando::CheckTracker::SettingsWindow> mRandoCheckTrackerSettingsWindow;
+std::shared_ptr<Rando::WorldTracker::WorldTrackerWindow> mRandoWorldTrackerWindow;
+std::shared_ptr<Rando::WorldTracker::SettingsWindow> mRandoWorldTrackerSettingsWindow;
 // std::shared_ptr<ItemTrackerWindow> mItemTrackerWindow;
 // std::shared_ptr<ItemTrackerSettingsWindow> mItemTrackerSettingsWindow;
 std::shared_ptr<DisplayOverlayWindow> mDisplayOverlayWindow;
@@ -190,13 +193,22 @@ void SetupGuiElements() {
     mRandoCheckTrackerWindow = std::make_shared<Rando::CheckTracker::CheckTrackerWindow>(
         "gWindows.CheckTracker", "Check Tracker", ImVec2(375, 460));
     gui->AddGuiWindow(mRandoCheckTrackerWindow);
-    mEggAimCrosshair = std::make_shared<EggAimCrosshairWindow>("gWindows.EggAimCrosshair", "Egg Aim Crosshair");
-    gui->AddGuiWindow(mEggAimCrosshair);
-    mEggAimCrosshair->Show();
 
     mRandoCheckTrackerSettingsWindow = std::make_shared<Rando::CheckTracker::SettingsWindow>(
         "gWindows.CheckTrackerSettings", "Check Tracker Settings");
     gui->AddGuiWindow(mRandoCheckTrackerSettingsWindow);
+
+    mRandoWorldTrackerWindow = std::make_shared<Rando::WorldTracker::WorldTrackerWindow>(
+        "gWindows.WorldTracker", "World Tracker", ImVec2(375, 460));
+    gui->AddGuiWindow(mRandoWorldTrackerWindow);
+
+    mRandoWorldTrackerSettingsWindow = std::make_shared<Rando::WorldTracker::SettingsWindow>(
+        "gWindows.WorldTrackerSettings", "World Tracker Settings");
+    gui->AddGuiWindow(mRandoWorldTrackerSettingsWindow);
+
+    mEggAimCrosshair = std::make_shared<EggAimCrosshairWindow>("gWindows.EggAimCrosshair", "Egg Aim Crosshair");
+    gui->AddGuiWindow(mEggAimCrosshair);
+    mEggAimCrosshair->Show();
 
     mInputViewer = std::make_shared<InputViewer>(CVAR_WINDOW("InputViewer"), "Input Viewer");
     gui->AddGuiWindow(mInputViewer);
@@ -231,6 +243,8 @@ void Destroy() {
     mNotificationWindow = nullptr;
     mRandoCheckTrackerWindow = nullptr;
     mRandoCheckTrackerSettingsWindow = nullptr;
+    mRandoWorldTrackerWindow = nullptr;
+    mRandoWorldTrackerSettingsWindow = nullptr;
 
     // mHookDebuggerWindow = nullptr;
     mSaveEditorWindow = nullptr;
