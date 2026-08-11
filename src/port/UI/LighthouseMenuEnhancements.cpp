@@ -721,6 +721,14 @@ void LighthouseMenu::AddMenuEnhancements() {
                      .DefaultValue(1.0f)
                      .Format("%.1f")
                      .Step(0.1f));
+
+    // World Tracker
+    path.sidebarName = "World Tracker";
+    AddSidebarEntry("Enhancements", path.sidebarName, 1);
+    AddWidget(path, "Popout Settings", WIDGET_WINDOW_BUTTON)
+        .CVar("gWindows.WorldTrackerSettings")
+        .WindowName("World Tracker Settings")
+        .HideInSearch(true);
 }
 
 } // namespace LighthouseGui

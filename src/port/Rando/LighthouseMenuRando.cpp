@@ -275,14 +275,6 @@ void LighthouseMenu::AddMenuRando() {
         .CVar("gWindows.CheckTrackerSettings")
         .WindowName("Check Tracker Settings")
         .HideInSearch(true);
-
-    // Rando - World Tracker
-    path.sidebarName = "World Tracker";
-    AddSidebarEntry("Rando", path.sidebarName, 1);
-    AddWidget(path, "Popout Settings", WIDGET_WINDOW_BUTTON)
-        .CVar("gWindows.WorldTrackerSettings")
-        .WindowName("World Tracker Settings")
-        .HideInSearch(true);
 }
 
 } // namespace LighthouseGui

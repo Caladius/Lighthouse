@@ -12,8 +12,6 @@ typedef struct {
     int32_t hasJinjo[5];
 } WorldTrackerObject;
 
-namespace Rando {
-
 namespace WorldTracker {
 
 extern WorldTrackerObject worldTrackerObject[LEVEL_C_BOSS];
@@ -42,7 +40,5 @@ public:
 };
 
 } // namespace WorldTracker
-
-} // namespace Rando
 
 #endif // RANDO_WORLD_TRACKER_H

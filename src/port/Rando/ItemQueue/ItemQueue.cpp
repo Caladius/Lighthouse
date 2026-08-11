@@ -10,7 +10,7 @@
 #include "port/UI/UIWidgets.hpp"
 #include "port/Enhancements/Retention/Retention.h"
 #include "port/Rando/CheckTracker/CheckTracker.h"
-#include "port/Rando/WorldTracker/WorldTracker.h"
+#include "port/Enhancements/Trackers/WorldTracker/WorldTracker.h"
 #include "port/Rando/Logic/Logic.h"
 
 extern "C" {
@@ -83,7 +83,7 @@ void ItemQueue::Process() {
         ItemQueue::GiveItem(randoSaveCheck.randoItemId);
         ItemQueue::SendNotification(randoSaveCheck.randoItemId);
         Rando::StaticData::ModifyRandoInfFlagState(randoCheckId);
-        Rando::WorldTracker::UpdateWorldTracker();
+        WorldTracker::UpdateWorldTracker();
         // RANDO_SAVE_CHECKS[randoCheckId].received = true;
     }
 
