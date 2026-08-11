@@ -682,7 +682,7 @@ void LighthouseMenu::AddMenuEnhancements() {
         .Options(CheckboxOptions().Tooltip(
             "Disables Mumbo untransforming you when going too far and skips his warning dialog."));
 
-    path = { "Enhancements", "Trackers", SECTION_COLUMN_1 };
+    path.sidebarName = "Gameplay Timer";
     AddSidebarEntry("Enhancements", path.sidebarName, 2);
     path.column = SECTION_COLUMN_1;
 
