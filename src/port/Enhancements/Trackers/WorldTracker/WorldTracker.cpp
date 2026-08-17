@@ -57,9 +57,9 @@ void WorldTracker_PopImageButtonStyle() {
 }
 
 void WorldTracker_DrawTotals() {
-    bool isEmbedded = CVAR_SHOW_SEPARATE_TOTAL_COLLECTED;
+    bool isEmbedded = !CVAR_SHOW_SEPARATE_TOTAL_COLLECTED;
 
-    if (isEmbedded) {
+    if (!isEmbedded) {
         ImGui::Begin("SplitWorldTrackerTotals", nullptr,
                      ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoNav | ImGuiWindowFlags_NoFocusOnAppearing |
                          ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoTitleBar |
@@ -102,7 +102,7 @@ void WorldTracker_DrawTotals() {
             ImGui::SameLine();
         }
     }
-    if (isEmbedded) {
+    if (!isEmbedded) {
         ImGui::End();
     }
 }
