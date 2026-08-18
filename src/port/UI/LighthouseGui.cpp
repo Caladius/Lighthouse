@@ -199,8 +199,8 @@ void SetupGuiElements() {
         CVAR_WINDOW("CheckTrackerSettings"), "Check Tracker Settings");
     gui->AddGuiWindow(mRandoCheckTrackerSettingsWindow);
 
-    mWorldTrackerWindow =
-        std::make_shared<WorldTracker::WorldTrackerWindow>(CVAR_WINDOW("WorldTracker"), "World Tracker", ImVec2(375, 460));
+    mWorldTrackerWindow = std::make_shared<WorldTracker::WorldTrackerWindow>(CVAR_WINDOW("WorldTracker"),
+                                                                             "World Tracker", ImVec2(375, 460));
     gui->AddGuiWindow(mWorldTrackerWindow);
 
     mWorldTrackerSettingsWindow =
