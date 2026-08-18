@@ -200,14 +200,14 @@ void SetupGuiElements() {
     gui->AddGuiWindow(mRandoCheckTrackerSettingsWindow);
 
     mWorldTrackerWindow =
-        std::make_shared<WorldTracker::WorldTrackerWindow>("gWindows.WorldTracker", "World Tracker", ImVec2(375, 460));
+        std::make_shared<WorldTracker::WorldTrackerWindow>(CVAR_WINDOW("WorldTracker"), "World Tracker", ImVec2(375, 460));
     gui->AddGuiWindow(mWorldTrackerWindow);
 
     mWorldTrackerSettingsWindow =
-        std::make_shared<WorldTracker::SettingsWindow>("gWindows.WorldTrackerSettings", "World Tracker Settings");
+        std::make_shared<WorldTracker::SettingsWindow>(CVAR_WINDOW("WorldTrackerSettings"), "World Tracker Settings");
     gui->AddGuiWindow(mWorldTrackerSettingsWindow);
 
-    mEggAimCrosshair = std::make_shared<EggAimCrosshairWindow>("gWindows.EggAimCrosshair", "Egg Aim Crosshair");
+    mEggAimCrosshair = std::make_shared<EggAimCrosshairWindow>(CVAR_WINDOW("EggAimCrosshair"), "Egg Aim Crosshair");
     gui->AddGuiWindow(mEggAimCrosshair);
     mEggAimCrosshair->Show();
 
